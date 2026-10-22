@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars (gitignored), review cost and enable deliberately.
+lab_acknowledged = false
+aws_region = "us-west-2"
+reader_count = 1
+# No email subscriber by default.
+alert_email = ""
+# Lower-cost exploration: consider database_insights_mode = "standard", but verify feature limits.
+database_insights_mode = "advanced"
