@@ -1,0 +1,25 @@
+name: static-checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  offline-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell syntax
+        run: for script in scripts/*.sh; do bash -n "$script"; done
+      - name: Python syntax
+        run: python -m compileall -q agents scripts/secret_exports.py
+  terraform-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Terraform format
+        run: terraform -chdir=terraform fmt -check
+      - name: Terraform init without remote backend
+        run: terraform -chdir=terraform init -backend=false -input=false
+      - name: Terraform validate
+        run: terraform -chdir=terraform validate -no-color
