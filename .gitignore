@@ -1,0 +1,33 @@
+# Terraform state, plans, provider caches
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfplan
+**/terraform.tfvars
+**/terraform.tfvars.json
+**/*.auto.tfvars
+**/*.auto.tfvars.json
+crash.log
+crash.*.log
+# Credentials, secrets, local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.secret
+*credentials*
+# Generated/local data
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.log
+*.zip
+*.tar.gz
+.dat302-backups/
+.bedrock_agentcore.yaml
+workshop-source-review/
